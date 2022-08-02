@@ -24,7 +24,7 @@ public class Snake {
     }
 
     /**
-     * 添加蛇神坐标
+     * 添加蛇身坐标
      *
      * @param x
      * @param y
