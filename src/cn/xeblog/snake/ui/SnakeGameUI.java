@@ -210,9 +210,26 @@ public class SnakeGameUI extends JPanel implements ActionListener {
             pillType = Pill.PillType.GREEN;
         }
 
-        // 随机坐标
-        int x = new Random().nextInt(this.width / Pill.width - 1);
-        int y = new Random().nextInt(this.height / Pill.height - 1);
+        int x, y;
+
+        boolean inSnakeBody;
+        do {
+            inSnakeBody = false;
+            // 随机坐标
+            x = new Random().nextInt(this.width / Pill.width - 1);
+            y = new Random().nextInt(this.height / Pill.height - 1);
+
+            // 需要跳过蛇身坐标
+            int sx = x * Snake.width;
+            int sy = y * Snake.height;
+            for (Point point : this.snake.body) {
+                if (point.x == sx && point.y == sy) {
+                    inSnakeBody = true;
+                    break;
+                }
+            }
+        } while (inSnakeBody);
+
         this.pill = new Pill(x, y, pillType);
     }
 
